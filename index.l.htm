@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navodaya Class 6 Full Mock Test (80 Qs = 100 Marks) & 50 Hindi Anuched</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
+            background-color: #f1f5f9;
+            color: #0f172a;
+        }
+        .navodaya-gradient {
+            background: linear-gradient(135deg, #1e1b4b 0%, #3730a3 55%, #6d28d9 100%);
+        }
+        .option-btn {
+            transition: all 0.18s ease;
+        }
+        .option-btn:hover:not(:disabled) {
+            transform: translateY(-1px);
+            border-color: #4f46e5;
+            background-color: #eef2ff;
+        }
+        .opt-correct {
+            background-color: #dcfce7 !important;
+            border-color: #16a34a !important;
+            color: #14532d !important;
+            font-weight: 700;
+        }
+        .opt-wrong {
+            background-color: #fee2e2 !important;
+            border-color: #dc2626 !important;
+            color: #7f1d1d !important;
+            font-weight: 700;
+        }
+        @keyframes urgentPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.45); }
+            50% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+        }
+        .timer-urgent {
+            animation: urgentPulse 1.2s infinite;
+            background-color: #fef2f2 !important;
+            border-color: #dc2626 !important;
+            color: #b91c1c !important;
+        }
+        @media print {
+            .no-print { display: none !important; }
+            body { background: #fff; }
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-14">
+
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 pt-4">
+        <!-- 1. मुख्य बैनर -->
+        <header class="navodaya-gradient rounded-3xl p-5 sm:p-7 text-white shadow-xl relative overflow-hidden">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-xs border border-white/25 px-3 py-1 rounded-full text-xs font-extrabold tracking-wide mb-2">
+                        <span>🏫 JNVST CLASS 6 ENTRANCE EXAM</span>
+                        <span>•</span>
+                        <span>1 Q = 1.25 Marks (Total 100 Marks)</span>
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                        नवोदय विद्यालय कक्षा 6 — पूर्ण मॉक टेस्ट एवं 50 हिंदी अनुच्छेद
+                    </h1>
+                    <p id="header-subtitle" class="text-indigo-100 text-xs sm:text-sm mt-1">
+                        Mental Ability (20) • EVS [15 Qs + 1 गद्यांश 5 Qs] (20) • Maths (20) • Hindi (20) | Reload पर नए शफ़ल प्रश्न!
+                    </p>
+                </div>
+
+                <!-- मुख्य टैब स्विचर -->
+                <div class="flex flex-wrap gap-2 no-print">
+                    <button id="tab-mock-btn" onclick="switchMainTab('mock')" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold bg-amber-400 text-slate-950 shadow-md cursor-pointer transition">
+                        📝 80 Qs Mock Test (100 Marks)
+                    </button>
+                    <button id="tab-anuched-btn" onclick="switchMainTab('anuched')" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold bg-white/15 hover:bg-white/25 text-white border border-white/30 cursor-pointer transition">
+                        📖 50 हिंदी अनुच्छेद (250 Qs)
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- ==================== TAB 1: 80 QUESTIONS JNVST MOCK TEST ==================== -->
+        <div id="section-mock">
+            <!-- कंट्रोल पैनल -->
+            <section class="bg-white rounded-2xl p-4 sm:p-5 shadow-md border border-slate-200 mt-4 no-print">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-end">
+                    <!-- नाम -->
+                    <div class="lg:col-span-3">
+                        <label class="block text-[11px] font-extrabold uppercase text-slate-500 mb-1">Student Name / विद्यार्थी का नाम</label>
+                        <input type="text" id="student-name" placeholder="अपना नाम लिखें..."
+                            class="w-full px-3.5 py-2 rounded-xl border-2 border-slate-200 focus:border-indigo-600 focus:outline-none text-sm font-bold bg-slate-50">
+                    </div>
+
+                    <!-- विषय फ़िल्टर -->
+                    <div class="lg:col-span-3">
+                        <label class="block text-[11px] font-extrabold uppercase text-slate-500 mb-1">Subject / विषय चुनें</label>
+                        <select id="subject-filter" onchange="onFilterChange()"
+                            class="w-full px-3 py-2 rounded-xl border-2 border-indigo-200 focus:border-indigo-600 focus:outline-none text-sm font-bold bg-indigo-50/40 cursor-pointer">
+                            <option value="all">All 4 Subjects (80 Qs = 100 Marks)</option>
+                            <option value="mental">1. Mental Ability / मानसिक योग्यता (20 Qs)</option>
+                            <option value="evs">2. EVS / पर्यावरण [15 Qs + 1 गद्यांश] (20 Qs)</option>
+                            <option value="maths">3. Maths / गणित (20 Qs)</option>
+                            <option value="hindi">4. Hindi / हिंदी व्याकरण (20 Qs)</option>
+                        </select>
+                    </div>
+
+                    <!-- भाषा मोड -->
+                    <div class="lg:col-span-2">
+                        <label class="block text-[11px] font-extrabold uppercase text-slate-500 mb-1">Language / भाषा</label>
+                        <select id="lang-select" onchange="onLangChange()"
+                            class="w-full px-3 py-2 rounded-xl border-2 border-purple-200 focus:border-purple-600 focus:outline-none text-sm font-bold bg-white cursor-pointer">
+                            <option value="both">Both (Eng + हिंदी)</option>
+                            <option value="hi">Hindi Only (हिंदी)</option>
+                            <option value="en">English Only</option>
+                        </select>
+                    </div>
+
+                    <!-- एग्जाम टाइमर (2 घंटे और 1.30 घंटे) -->
+                    <div class="lg:col-span-4">
+                        <label class="block text-[11px] font-extrabold uppercase text-slate-500 mb-1">Exam Timer / परीक्षा समय</label>
+                        <div id="timer-box" class="flex flex-wrap items-center gap-1.5 bg-slate-100 border border-slate-200 p-1.5 rounded-xl">
+                            <button onclick="startPresetTimer(7200)" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-indigo-600 hover:bg-indigo-700 text-white cursor-pointer">
+                                ⏱️ 2 घंटे (2:00:00)
+                            </button>
+                            <button onclick="startPresetTimer(5400)" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-purple-600 hover:bg-purple-700 text-white cursor-pointer">
+                                ⏱️ 1.30 घंटे (1:30:00)
+                            </button>
+                            <span id="timer-display" class="font-mono text-xs sm:text-sm font-extrabold text-slate-800 bg-white px-2.5 py-1 rounded-lg border border-slate-300 ml-auto">
+                                02:00:00
+                            </span>
+                            <button id="timer-pause-btn" onclick="toggleTimerPause()" class="px-2 py-1 rounded-lg text-xs font-bold bg-slate-700 text-white cursor-pointer">
+                                ⏸
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- दूसरा टूलबार -->
+                <div class="mt-3 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button id="btn-mode-list" onclick="setPlayMode('list')" class="px-3 py-1.5 rounded-lg text-xs font-extrabold bg-indigo-600 text-white cursor-pointer">
+                            📋 All Questions List
+                        </button>
+                        <button id="btn-mode-single" onclick="setPlayMode('single')" class="px-3 py-1.5 rounded-lg text-xs font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer">
+                            🎮 One-by-One Mode
+                        </button>
+                        <button onclick="shuffleAllQuestionsAndOptions()" class="px-3 py-1.5 rounded-lg text-xs font-extrabold bg-violet-50 text-violet-700 border border-violet-200 hover:bg-violet-100 cursor-pointer">
+                            🔀 Shuffle Qs & Options
+                        </button>
+                        <button id="btn-wrong-only" onclick="toggleWrongRevision()" class="px-3 py-1.5 rounded-lg text-xs font-extrabold bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 cursor-pointer">
+                            🔁 Wrong Revision (<span id="wrong-count-badge">0</span>)
+                        </button>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <button onclick="toggleSound()" id="sound-btn" class="px-3 py-1.5 rounded-lg text-xs font-extrabold bg-slate-100 border border-slate-200 cursor-pointer">
+                            🔊 Sound ON
+                        </button>
+                        <button onclick="resetFullQuiz()" class="px-3 py-1.5 rounded-lg text-xs font-extrabold bg-rose-100 text-rose-800 hover:bg-rose-200 cursor-pointer">
+                            🔄 Reset
+                        </button>
+                        <button onclick="openReportCard()" class="px-4 py-1.5 rounded-lg text-xs font-extrabold bg-emerald-600 hover:bg-emerald-700 text-white shadow cursor-pointer">
+                            🎓 Result & Certificate
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- लाइव JNVST स्कोरकार्ड (1 Q = 1.25 Marks, 4 Subjects × 25 Marks = 100 Marks) -->
+            <section class="sticky top-2 z-30 bg-white/95 backdrop-blur-md rounded-2xl p-3.5 shadow-lg border border-indigo-100 mt-3.5 no-print">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="font-extrabold text-sm text-slate-800">📊 JNVST Live Scorecard (1 Q = 1.25 अंक)</span>
+                        <span id="player-tag" class="bg-indigo-50 text-indigo-700 border border-indigo-200 text-xs font-bold px-2.5 py-0.5 rounded-full">👤 Guest</span>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-1.5 text-xs font-extrabold">
+                        <span class="bg-blue-50 text-blue-700 border border-blue-200 px-2.5 py-1 rounded-lg">
+                            Attempted: <span id="stat-attempted">0</span>/80
+                        </span>
+                        <span class="bg-emerald-50 text-emerald-700 border border-emerald-200 px-2.5 py-1 rounded-lg">
+                            ✅ Correct: <span id="stat-correct">0</span>
+                        </span>
+                        <span class="bg-rose-50 text-rose-700 border border-rose-200 px-2.5 py-1 rounded-lg">
+                            ❌ Wrong: <span id="stat-wrong">0</span>
+                        </span>
+                        <span class="bg-amber-100 text-amber-900 border border-amber-300 px-3 py-1 rounded-lg">
+                            🏆 Marks: <span id="stat-marks">0.00</span> / 100 (<span id="stat-pct">0.00%</span>)
+                        </span>
+                    </div>
+                </div>
+
+                <!-- चारों विषयों के 25-25 अंकों का लाइव ब्रेकडाउन -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] font-extrabold">
+                    <div class="bg-purple-50 border border-purple-200 rounded-lg px-2.5 py-1 flex justify-between">
+                        <span class="text-purple-800">🧠 Mental Ability:</span>
+                        <span id="sub-marks-mental" class="text-purple-950">0.00 / 25</span>
+                    </div>
+                    <div class="bg-emerald-50 border border-emerald-200 rounded-lg px-2.5 py-1 flex justify-between">
+                        <span class="text-emerald-800">🌿 EVS (15+5 Qs):</span>
+                        <span id="sub-marks-evs" class="text-emerald-950">0.00 / 25</span>
+                    </div>
+                    <div class="bg-sky-50 border border-sky-200 rounded-lg px-2.5 py-1 flex justify-between">
+                        <span class="text-sky-800">➗ Maths:</span>
+                        <span id="sub-marks-maths" class="text-sky-950">0.00 / 25</span>
+                    </div>
+                    <div class="bg-amber-50 border border-amber-200 rounded-lg px-2.5 py-1 flex justify-between">
+                        <span class="text-amber-800">🔤 Hindi:</span>
+                        <span id="sub-marks-hindi" class="text-amber-950">0.00 / 25</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- मुख्य प्रश्न क्षेत्र + दायां पैलेट -->
+            <main class="grid grid-cols-1 lg:grid-cols-12 gap-5 mt-5 no-print">
+                <div class="lg:col-span-8 xl:col-span-9">
+                    <!-- One-by-One नेविगेशन -->
+                    <div id="single-nav-bar" class="hidden bg-white rounded-2xl p-3 mb-4 border border-slate-200 flex items-center justify-between">
+                        <button onclick="moveSingle(-1)" id="prev-btn" class="px-4 py-2 rounded-xl text-xs font-extrabold bg-slate-100 hover:bg-slate-200 disabled:opacity-40 cursor-pointer">⬅️ पिछला</button>
+                        <span id="single-indicator" class="text-sm font-extrabold text-indigo-700">Question 1 of 80</span>
+                        <button onclick="moveSingle(1)" id="next-btn" class="px-4 py-2 rounded-xl text-xs font-extrabold bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-40 cursor-pointer">अगला ➡️</button>
+                    </div>
+
+                    <!-- प्रश्न कार्ड लिस्ट -->
+                    <div id="questions-list" class="space-y-4"></div>
+                </div>
+
+                <!-- Question Palette (1-80) -->
+                <aside class="lg:col-span-4 xl:col-span-3">
+                    <div class="bg-white rounded-2xl p-4 shadow-md border border-slate-200 sticky top-36">
+                        <div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-100">
+                            <h3 class="font-extrabold text-sm text-slate-800">🔢 Question Map (1–80)</h3>
+                            <span id="palette-total" class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">80 Qs</span>
+                        </div>
+                        <div id="palette-grid" class="grid grid-cols-5 gap-1.5 max-h-[55vh] overflow-y-auto p-1"></div>
+                    </div>
+                </aside>
+            </main>
+        </div>
+
+        <!-- ==================== TAB 2: 50 HINDI ANUCHED (250 QUESTIONS) ==================== -->
+        <div id="section-anuched" class="hidden mt-4 no-print">
+            <section class="bg-white rounded-2xl p-4 sm:p-5 shadow-md border border-slate-200 mb-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <h2 class="text-lg sm:text-xl font-extrabold text-indigo-950">📖 नवोदय हिंदी अपठित गद्यांश अभ्यास (50 अनुच्छेद × 5 प्रश्न = 250 प्रश्न)</h2>
+                        <p class="text-xs text-slate-500 mt-0.5">हर अनुच्छेद को ध्यान से पढ़ें और नीचे दिए गए 5 बहुविकल्पीय प्रश्नों के उत्तर दें।</p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <select id="anuched-select" onchange="selectAnuched(parseInt(this.value, 10))"
+                            class="px-3 py-2 rounded-xl border-2 border-indigo-200 text-sm font-bold bg-indigo-50/40 cursor-pointer"></select>
+                        <button onclick="prevAnuched()" class="px-3 py-2 rounded-xl text-xs font-extrabold bg-slate-100 hover:bg-slate-200 cursor-pointer">⬅️ पिछला</button>
+                        <button onclick="nextAnuched()" class="px-3 py-2 rounded-xl text-xs font-extrabold bg-indigo-600 text-white hover:bg-indigo-700 cursor-pointer">अगला ➡️</button>
+                    </div>
+                </div>
+                <div class="mt-3 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs font-extrabold">
+                    <span class="bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 rounded-lg">
+                        ✅ कुल सही: <span id="anuched-correct-stat">0</span> / 250
+                    </span>
+                    <span class="bg-amber-50 text-amber-800 border border-amber-200 px-3 py-1 rounded-lg">
+                        🏆 अनुच्छेद अंक (1.25 प्रति प्रश्न): <span id="anuched-marks-stat">0.00</span> / 312.50
+                    </span>
+                </div>
+            </section>
+
+            <div id="anuched-container"></div>
+        </div>
+    </div>
+
+    <!-- सर्टिफिकेट / रिपोर्ट कार्ड मोडल -->
+    <div id="report-modal" class="fixed inset-0 bg-slate-900/75 backdrop-blur-xs z-50 hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border-4 border-indigo-600 relative my-auto">
+            <button onclick="closeReportCard()" class="no-print absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 font-extrabold cursor-pointer">✕</button>
+            <div class="text-center border-b-2 border-dashed border-slate-200 pb-4 mb-4">
+                <span class="inline-block bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-extrabold mb-2">🏅 JNVST CLASS 6 MOCK REPORT CARD</span>
+                <h2 class="text-2xl font-extrabold text-indigo-950" id="cert-name">Student Name</h2>
+                <p class="text-xs text-slate-500 mt-1" id="cert-date"></p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center mb-5">
+                <div class="bg-slate-50 p-3 rounded-xl border">
+                    <div class="text-xs font-bold text-slate-500">Attempted</div>
+                    <div id="cert-att" class="text-lg font-extrabold text-blue-700">0/80</div>
+                </div>
+                <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-200">
+                    <div class="text-xs font-bold text-emerald-700">Correct</div>
+                    <div id="cert-cor" class="text-lg font-extrabold text-emerald-700">0</div>
+                </div>
+                <div class="bg-rose-50 p-3 rounded-xl border border-rose-200">
+                    <div class="text-xs font-bold text-rose-700">Wrong</div>
+                    <div id="cert-wrg" class="text-lg font-extrabold text-rose-700">0</div>
+                </div>
+                <div class="bg-amber-50 p-3 rounded-xl border border-amber-200">
+                    <div class="text-xs font-bold text-amber-700">Final Score</div>
+                    <div id="cert-scr" class="text-lg font-extrabold text-amber-800">0 / 100</div>
+                </div>
+            </div>
+
+            <div id="cert-subjects" class="space-y-2 mb-5"></div>
+
+            <div class="flex gap-3 no-print">
+                <button onclick="window.print()" class="flex-1 py-3 rounded-xl font-extrabold text-sm bg-indigo-600 text-white cursor-pointer">🖨️ Print Certificate</button>
+                <button onclick="closeReportCard()" class="flex-1 py-3 rounded-xl font-extrabold text-sm bg-slate-100 text-slate-800 cursor-pointer">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // =========================================================================
+        // 1. EVS का विशेष गद्यांश (Q36 - Q40 के लिए)
+        // =========================================================================
+        const EVS_PASSAGE = {
+            titleEn: "🌿 EVS Comprehension Passage (Questions 36 to 40)",
+            titleHi: "🌿 पर्यावरण अध्ययन अनुच्छेद / गद्यांश (प्रश्न 36 से 40)",
+            textEn: "Forests are called the 'Green Lungs' of our Earth because trees absorb carbon dioxide and release life-giving oxygen during photosynthesis. Tree roots bind the topsoil firmly, preventing soil erosion and floods while helping rainwater seep underground to recharge groundwater. In 1973, villagers in Uttarakhand started the famous 'Chipko Movement' led by Sunderlal Bahuguna, hugging trees to protect them from being cut down.",
+            textHi: "वनों को हमारी पृथ्वी के 'हरे फेफड़े' (Green Lungs) कहा जाता है क्योंकि पेड़ प्रकाश संश्लेषण के दौरान कार्बन डाइऑक्साइड अवशोषित करते हैं और जीवनदायिनी ऑक्सीजन छोड़ते हैं। पेड़ों की जड़ें ऊपरी मिट्टी को मजबूती से बांधे रखती हैं, जिससे मृदा अपरदन और बाढ़ रुकती है तथा वर्षा का जल जमीन में रिसकर भूजल स्तर बढ़ाता है। 1973 में उत्तराखंड के ग्रामीणों ने सुंदरलाल बहुगुणा के नेतृत्व में पेड़ों को कटने से बचाने के लिए प्रसिद्ध 'चिपको आंदोलन' शुरू किया था।"
+        };
+
+        // =========================================================================
+        // 2. संपूर्ण 80 प्रश्न बैंक (20 Mental + 20 EVS [15+5] + 20 Maths + 20 Hindi)
+        // =========================================================================
+        const QUESTIONS_80 = [
+            // ---------- SUBJECT 1: MENTAL ABILITY (Q1 - Q20) ----------
+            { id: 1, subject: "mental", qEn: "Odd One Out: Find the word that does NOT belong to the group:", qHi: "असंगत चुनें (Odd One Out): वह शब्द चुनें जो समूह से अलग है:", optsEn: ["Apple", "Mango", "Potato", "Banana"], optsHi: ["सेब", "आम", "आलू", "केला"], ans: 2, hint: "Three are fruits, one grows underground as a vegetable.", exp: "Potato is a vegetable (stem), whereas Apple, Mango, and Banana are fruits." },
+            { id: 2, subject: "mental", qEn: "Complete the number series: 2, 6, 12, 20, 30, ?", qHi: "संख्या श्रृंखला पूरी करें: 2, 6, 12, 20, 30, ?", optsEn: ["36", "40", "42", "44"], optsHi: ["36", "40", "42", "44"], ans: 2, hint: "Differences are +4, +6, +8, +10, so next is +12.", exp: "2+4=6, 6+6=12, 12+8=20, 20+10=30, 30+12=42." },
+            { id: 3, subject: "mental", qEn: "Analogy: Book : Read :: Pen : ?", qHi: "सादृश्यता: पुस्तक : पढ़ना :: कलम : ?", optsEn: ["Paper", "Write", "Ink", "Bag"], optsHi: ["कागज", "लिखना", "स्याही", "बस्ता"], ans: 1, hint: "What action do we perform with a pen?", exp: "A book is used to read; similarly, a pen is used to write." },
+            { id: 4, subject: "mental", qEn: "If CAT is coded as 24 (3+1+20), then DOG is coded as:", qHi: "यदि CAT को 24 (3+1+20) लिखा जाता है, तो DOG को क्या लिखा जाएगा?", optsEn: ["24", "26", "28", "30"], optsHi: ["24", "26", "28", "30"], ans: 1, hint: "D=4, O=15, G=7. Add them together.", exp: "D(4) + O(15) + G(7) = 26." },
+            { id: 5, subject: "mental", qEn: "Mirror Image: How does the word 'AMBULANCE' or letter 'E' look in a plane mirror?", qHi: "दर्पण प्रतिबिंब: समतल दर्पण में अक्षर 'B' कैसा दिखाई देगा?", optsEn: ["B (Same)", "Reversed horizontally (ꓭ)", "Upside down", "Rotated 90°"], optsHi: ["B (वैसा ही)", "क्षैतिज रूप से उल्टा (ꓭ)", "सिर के बल उल्टा", "90° घुमा हुआ"], ans: 1, hint: "A mirror reverses left and right (lateral inversion).", exp: "Lateral inversion flips left and right sides in a plane mirror." },
+            { id: 6, subject: "mental", qEn: "Find the missing term: AZ, BY, CX, DW, ?", qHi: "लुप्त पद ज्ञात करें: AZ, BY, CX, DW, ?", optsEn: ["EV", "EU", "FV", "EW"], optsHi: ["EV", "EU", "FV", "EW"], ans: 0, hint: "First letter goes forward (A,B,C,D,E) and second goes backward (Z,Y,X,W,V).", exp: "5th letter from start is E and 5th from end is V -> EV." },
+            { id: 7, subject: "mental", qEn: "Odd One Out: Which shape has no straight sides?", qHi: "असंगत चुनें: किस आकृति में कोई सीधी भुजा नहीं होती?", optsEn: ["Triangle", "Square", "Circle", "Rectangle"], optsHi: ["त्रिभुज", "वर्ग", "वृत्त (Circle)", "आयत"], ans: 2, hint: "It is completely round.", exp: "Circle is a curved closed figure with zero straight edges." },
+            { id: 8, subject: "mental", qEn: "Ravi walks 5 km North, then turns Right and walks 3 km. Which direction is he facing now?", qHi: "रवि 5 किमी उत्तर दिशा में चलता है, फिर दाएं मुड़कर 3 किमी चलता है। अब उसका मुख किस दिशा में है?", optsEn: ["North (उत्तर)", "South (दक्षिण)", "East (पूर्व)", "West (पश्चिम)"], optsHi: ["उत्तर (North)", "दक्षिण (South)", "पूर्व (East)", "पश्चिम (West)"], ans: 2, hint: "Turning right from North points toward sunrise.", exp: "From North, a right turn leads to East." },
+            { id: 9, subject: "mental", qEn: "Complete the pattern: 5, 10, 20, 40, ?", qHi: "पैटर्न पूरा करें: 5, 10, 20, 40, ?", optsEn: ["60", "70", "80", "100"], optsHi: ["60", "70", "80", "100"], ans: 2, hint: "Each number is doubled.", exp: "40 × 2 = 80." },
+            { id: 10, subject: "mental", qEn: "Analogy: Doctor : Hospital :: Teacher : ?", qHi: "सादृश्यता: डॉक्टर : अस्पताल :: शिक्षक : ?", optsEn: ["Court", "School", "Bank", "Post Office"], optsHi: ["न्यायालय", "विद्यालय (School)", "बैंक", "डाकघर"], ans: 1, hint: "Where does a teacher work?", exp: "A doctor works in a hospital; a teacher works in a school." },
+            { id: 11, subject: "mental", qEn: "How many triangles are formed when one diagonal is drawn inside a rectangle?", qHi: "एक आयत के अंदर एक विकर्ण खींचने पर कितने त्रिभुज बनते हैं?", optsEn: ["1", "2", "3", "4"], optsHi: ["1", "2", "3", "4"], ans: 1, hint: "A diagonal divides a rectangle into two equal halves.", exp: "One diagonal divides a rectangle into 2 right-angled triangles." },
+            { id: 12, subject: "mental", qEn: "Odd One Out: 16, 25, 36, 48", qHi: "असंगत संख्या चुनें: 16, 25, 36, 48", optsEn: ["16", "25", "36", "48"], optsHi: ["16", "25", "36", "48"], ans: 3, hint: "16=4², 25=5², 36=6², what about 48?", exp: "16, 25, and 36 are perfect squares, whereas 48 is not." },
+            { id: 13, subject: "mental", qEn: "If today is Monday, what day of the week will it be after 15 days?", qHi: "यदि आज सोमवार है, तो 15 दिनों के बाद सप्ताह का कौन-सा दिन होगा?", optsEn: ["Monday (सोमवार)", "Tuesday (मंगलवार)", "Wednesday (बुधवार)", "Sunday (रविवार)"], optsHi: ["सोमवार", "मंगलवार", "बुधवार", "रविवार"], ans: 1, hint: "14 days = 2 full weeks (Monday again), plus 1 extra day.", exp: "15 = 2 weeks + 1 odd day. Monday + 1 = Tuesday." },
+            { id: 14, subject: "mental", qEn: "A square paper is folded in half twice and a hole is punched in the center. How many holes appear when unfolded?", qHi: "एक वर्गाकार कागज को दो बार आधा मोड़कर बीच में एक छेद किया जाता है। खोलने पर कितने छेद दिखेंगे?", optsEn: ["1", "2", "4", "8"], optsHi: ["1", "2", "4", "8"], ans: 2, hint: "2 folds create 4 layers of paper.", exp: "4 layers of folded paper produce 4 symmetrical holes when opened." },
+            { id: 15, subject: "mental", qEn: "Analogy: Bird : Fly :: Fish : ?", qHi: "सादृश्यता: पक्षी : उड़ना :: मछली : ?", optsEn: ["Walk", "Swim", "Crawl", "Run"], optsHi: ["चलना", "तैरना (Swim)", "रेंगना", "दौड़ना"], ans: 1, hint: "How does a fish move in water?", exp: "Birds fly in the air; fish swim in water." },
+            { id: 16, subject: "mental", qEn: "Complete the series: 100, 90, 81, 73, ?", qHi: "श्रृंखला पूरी करें: 100, 90, 81, 73, ?", optsEn: ["64", "65", "66", "67"], optsHi: ["64", "65", "66", "67"], ans: 2, hint: "Subtract 10, then 9, then 8, next subtract 7.", exp: "100-10=90, 90-9=81, 81-8=73, 73-7=66." },
+            { id: 17, subject: "mental", qEn: "Odd One Out: Ganga, Yamuna, Himalayas, Godavari", qHi: "असंगत चुनें: गंगा, यमुना, हिमालय, गोदावरी", optsEn: ["Ganga", "Yamuna", "Himalayas", "Godavari"], optsHi: ["गंगा", "यमुना", "हिमालय", "गोदावरी"], ans: 2, hint: "Three are rivers, one is a mountain range.", exp: "Himalayas is a mountain range, while Ganga, Yamuna, and Godavari are rivers." },
+            { id: 18, subject: "mental", qEn: "In a row of 20 students, Aman is 7th from the left. What is his rank from the right?", qHi: "20 विद्यार्थियों की एक पंक्ति में अमन बाएं से 7वें स्थान पर है। दाएं से उसका स्थान क्या है?", optsEn: ["13th", "14th", "15th", "12th"], optsHi: ["13वाँ", "14वाँ", "15वाँ", "12वाँ"], ans: 1, hint: "Formula: Total + 1 - Left Position.", exp: "20 + 1 - 7 = 14th from the right." },
+            { id: 19, subject: "mental", qEn: "Which clock time shows an exact 90° right angle between hour and minute hands?", qHi: "घड़ी का कौन-सा समय घंटे और मिनट की सुइयों के बीच ठीक 90° का समकोण बनाता है?", optsEn: ["6:00", "12:00", "3:00", "1:00"], optsHi: ["6:00", "12:00", "3:00", "1:00"], ans: 2, hint: "At 3 o'clock, one hand points to 12 and the other to 3.", exp: "At 3:00 (and 9:00), the hands form an exact 90° right angle." },
+            { id: 20, subject: "mental", qEn: "Find the odd number: 3, 5, 7, 9, 11", qHi: "समूह से अलग संख्या चुनें: 3, 5, 7, 9, 11", optsEn: ["3", "5", "9", "11"], optsHi: ["3", "5", "9", "11"], ans: 2, hint: "All others are prime numbers.", exp: "9 is a composite number (3×3), whereas 3, 5, 7, and 11 are prime numbers." },
+
+            // ---------- SUBJECT 2: EVS (15 REGULAR Qs [Q21-Q35] + 1 PASSAGE 5 Qs [Q36-Q40]) ----------
+            { id: 21, subject: "evs", chapter: "Fibre to Fabric", qEn: "Which of the following is a natural plant fibre?", qHi: "निम्नलिखित में से कौन-सा एक प्राकृतिक पादप तंतु है?", optsEn: ["Cotton", "Nylon", "Polyester", "Acrylic"], optsHi: ["कपास (रुई)", "नायलॉन", "पॉलिएस्टर", "एक्रिलिक"], ans: 0, hint: "It grows in white bolls on a cotton plant.", exp: "Cotton is obtained from cotton plants, whereas nylon, polyester, and acrylic are synthetic." },
+            { id: 22, subject: "evs", chapter: "Fibre to Fabric", qEn: "The process of separating cotton fibres from seeds by combing is called:", qHi: "कपास के बीजों से रुई के रेशों को अलग करने की प्रक्रिया क्या कहलाती है?", optsEn: ["Spinning", "Ginning", "Weaving", "Knitting"], optsHi: ["कताई (Spinning)", "ओटना (Ginning)", "बुनाई (Weaving)", "बंधाई (Knitting)"], ans: 1, hint: "In Hindi it is called 'ओटना'.", exp: "Ginning separates cotton fibres from cotton seeds." },
+            { id: 23, subject: "evs", chapter: "Fibre to Fabric", qEn: "Jute fibre is obtained from which part of the jute plant?", qHi: "जूट (पटसन) का तंतु पौधे के किस भाग से प्राप्त होता है?", optsEn: ["Root", "Leaf", "Stem", "Flower"], optsHi: ["जड़", "पत्ती", "तना", "फूल"], ans: 2, hint: "The stalks are soaked in water during the rainy season.", exp: "Jute fibre is obtained from the stem of the jute plant." },
+            { id: 24, subject: "evs", chapter: "Fibre to Fabric", qEn: "Rearing of silkworms for the production of silk is known as:", qHi: "रेशम उत्पादन के लिए रेशम के कीड़ों को पालने की प्रक्रिया क्या कहलाती है?", optsEn: ["Apiculture", "Sericulture", "Horticulture", "Pisciculture"], optsHi: ["मधुमक्खी पालन", "रेशमकीट पालन (Sericulture)", "बागवानी", "मत्स्य पालन"], ans: 1, hint: "Silkworms feed on mulberry leaves.", exp: "Sericulture is the rearing of silkworms to produce silk." },
+            { id: 25, subject: "evs", chapter: "Fibre to Fabric", qEn: "Which soil and climate are best suited for growing cotton?", qHi: "कपास की खेती के लिए कौन-सी मिट्टी और जलवायु सबसे उपयुक्त होती है?", optsEn: ["Black soil & warm climate", "Sandy soil & cold climate", "Rocky soil & snow", "Red soil & frost"], optsHi: ["काली मिट्टी और गर्म जलवायु", "बलुई मिट्टी और ठंडी जलवायु", "पथरीली मिट्टी और बर्फ", "लाल मिट्टी और पाला"], ans: 0, hint: "Regur soil of Gujarat and Maharashtra is famous for cotton.", exp: "Cotton grows best in black soil and warm climate." },
+            { id: 26, subject: "evs", chapter: "Forest & Environment", qEn: "In a food chain, green plants are known as:", qHi: "खाद्य श्रृंखला में हरे पौधों को किस नाम से जाना जाता है?", optsEn: ["Consumers", "Producers", "Decomposers", "Scavengers"], optsHi: ["उपभोक्ता", "उत्पादक (Producers)", "अपघटक", "अपमार्जक"], ans: 1, hint: "They produce food using sunlight.", exp: "Green plants prepare their own food via photosynthesis, so they are Producers." },
+            { id: 27, subject: "evs", chapter: "Forest & Environment", qEn: "Kaziranga National Park in Assam is famous for conserving:", qHi: "असम का काजीरंगा राष्ट्रीय उद्यान किस जंतु के संरक्षण के लिए प्रसिद्ध है?", optsEn: ["Asiatic Lion", "One-horned Rhinoceros", "Snow Leopard", "Camel"], optsHi: ["एशियाई शेर", "एक सींग वाला गैंडा", "हिम तेंदुआ", "ऊँट"], ans: 1, hint: "This giant herbivore has a single horn on its nose.", exp: "Kaziranga National Park is famous for the Indian one-horned rhinoceros." },
+            { id: 28, subject: "evs", chapter: "Forest & Environment", qEn: "World Environment Day is celebrated every year on:", qHi: "विश्व पर्यावरण दिवस प्रतिवर्ष कब मनाया जाता है?", optsEn: ["June 5", "April 22", "March 22", "October 2"], optsHi: ["5 जून", "22 अप्रैल", "22 मार्च", "2 अक्टूबर"], ans: 0, hint: "5th day of June.", exp: "World Environment Day is celebrated globally on 5th June." },
+            { id: 29, subject: "evs", chapter: "Forest & Environment", qEn: "Microorganisms that convert dead plants and animals into humus are called:", qHi: "मृत पौधों और जंतुओं को ह्यूमस में बदलने वाले सूक्ष्मजीव क्या कहलाते हैं?", optsEn: ["Herbivores", "Carnivores", "Decomposers", "Producers"], optsHi: ["शाकाहारी", "मांसाहारी", "अपघटक (Decomposers)", "उत्पादक"], ans: 2, hint: "Bacteria and fungi act as nature's recyclers.", exp: "Decomposers break down dead organic matter into nutrient-rich humus." },
+            { id: 30, subject: "evs", chapter: "Forest & Environment", qEn: "Which gas layer in the upper atmosphere protects us from harmful UV rays?", qHi: "ऊपरी वायुमंडल में कौन-सी गैस परत हमें सूर्य की हानिकारक पराबैंगनी (UV) किरणों से बचाती है?", optsEn: ["Ozone layer", "Methane layer", "Carbon monoxide", "Hydrogen"], optsHi: ["ओजोन परत (Ozone)", "मीथेन परत", "कार्बन मोनोऑक्साइड", "हाइड्रोजन"], ans: 0, hint: "Its formula is O3.", exp: "The Ozone layer absorbs harmful ultraviolet radiation from the Sun." },
+            { id: 31, subject: "evs", chapter: "Indian Festivals", qEn: "'Bihu' is the famous harvest festival of which Indian state?", qHi: "'बिहू' भारत के किस राज्य का प्रसिद्ध फसल कटाई त्योहार है?", optsEn: ["Kerala", "Assam", "Punjab", "Tamil Nadu"], optsHi: ["केरल", "असम", "पंजाब", "तमिलनाडु"], ans: 1, hint: "This North-Eastern state is famous for tea gardens.", exp: "Bihu is the traditional harvest festival of Assam." },
+            { id: 32, subject: "evs", chapter: "Indian Festivals", qEn: "Snake boat races (Vallam Kali) and Pookalam are features of:", qHi: "नौका दौड़ (वल्लम काली) और फूलों की रंगोली (पूकलम) किस त्योहार की विशेषताएं हैं?", optsEn: ["Baisakhi", "Onam", "Lohri", "Holi"], optsHi: ["बैसाखी", "ओणम (Onam)", "लोहड़ी", "होली"], ans: 1, hint: "Celebrated in Kerala to welcome King Mahabali.", exp: "Onam is the grand harvest festival of Kerala." },
+            { id: 33, subject: "evs", chapter: "Indian Festivals", qEn: "Why is Republic Day celebrated on 26th January every year?", qHi: "प्रत्येक वर्ष 26 जनवरी को गणतंत्र दिवस क्यों मनाया जाता है?", optsEn: ["India got freedom", "Constitution of India came into effect", "Gandhi Jayanti", "First train ran"], optsHi: ["आजादी मिली थी", "भारत का संविधान लागू हुआ था", "गांधी जयंती", "पहली रेल चली थी"], ans: 1, hint: "26 January 1950.", exp: "The Constitution of India came into effect on 26 January 1950." },
+            { id: 34, subject: "evs", chapter: "Indian Festivals", qEn: "'Pongal' is a four-day harvest festival celebrated mainly in:", qHi: "'पोंगल' चार दिनों का फसल उत्सव मुख्य रूप से कहाँ मनाया जाता है?", optsEn: ["Tamil Nadu", "West Bengal", "Gujarat", "Bihar"], optsHi: ["तमिलनाडु", "पश्चिम बंगाल", "गुजरात", "बिहार"], ans: 0, hint: "Sweet rice is boiled to thank the Sun God in this southern state.", exp: "Pongal is a major harvest festival of Tamil Nadu." },
+            { id: 35, subject: "evs", chapter: "Indian Festivals", qEn: "Gandhi Jayanti (2nd October) is observed globally by the UN as:", qHi: "गांधी जयंती (2 अक्टूबर) को संयुक्त राष्ट्र द्वारा विश्व स्तर पर किस रूप में मनाया जाता है?", optsEn: ["International Day of Non-Violence", "World Water Day", "World Health Day", "Earth Day"], optsHi: ["अंतर्राष्ट्रीय अहिंसा दिवस", "विश्व जल दिवस", "विश्व स्वास्थ्य दिवस", "पृथ्वी दिवस"], ans: 0, hint: "Mahatma Gandhi preached Ahimsa.", exp: "October 2 is the International Day of Non-Violence." },
+            // EVS PASSAGE QUESTIONS (Q36 - Q40)
+            { id: 36, subject: "evs", chapter: "EVS Passage", isPassageQ: true, qEn: "(Based on Passage) Why are forests called the 'Green Lungs' of our Earth?", qHi: "(गद्यांश के आधार पर) वनों को पृथ्वी के 'हरे फेफड़े' क्यों कहा जाता है?", optsEn: ["They absorb CO2 and release oxygen", "They absorb oxygen and release CO2", "They block rain", "They cause floods"], optsHi: ["वे CO2 सोखते हैं और ऑक्सीजन छोड़ते हैं", "वे ऑक्सीजन सोखते हैं", "वे बारिश रोकते हैं", "वे बाढ़ लाते हैं"], ans: 0, hint: "Read the very first sentence of the EVS passage.", exp: "Trees absorb carbon dioxide and release oxygen during photosynthesis." },
+            { id: 37, subject: "evs", chapter: "EVS Passage", isPassageQ: true, qEn: "(Based on Passage) How do tree roots help prevent soil erosion and floods?", qHi: "(गद्यांश के आधार पर) पेड़ों की जड़ें मृदा अपरदन और बाढ़ को कैसे रोकती हैं?", optsEn: ["By binding topsoil firmly", "By drying rivers", "By heating the soil", "By blocking sunlight"], optsHi: ["ऊपरी मिट्टी को मजबूती से बांधकर", "नदियों को सुखाकर", "मिट्टी गर्म करके", "धूप रोककर"], ans: 0, hint: "See the second sentence of the passage.", exp: "Tree roots bind topsoil firmly, preventing erosion and floods." },
+            { id: 38, subject: "evs", chapter: "EVS Passage", isPassageQ: true, qEn: "(Based on Passage) How do forests help increase groundwater levels?", qHi: "(गद्यांश के आधार पर) वन भूजल स्तर बढ़ाने में कैसे मदद करते हैं?", optsEn: ["By helping rainwater seep underground", "By stopping clouds", "By freezing water", "By evaporating lakes"], optsHi: ["वर्षा के जल को जमीन में रिसने में मदद करके", "बादलों को रोककर", "पानी जमाकर", "झीलों को सुखाकर"], ans: 0, hint: "Water seeps underground through tree roots.", exp: "Forests allow rainwater to seep underground and recharge groundwater." },
+            { id: 39, subject: "evs", chapter: "EVS Passage", isPassageQ: true, qEn: "(Based on Passage) Who led the 'Chipko Movement' in Uttarakhand in 1973?", qHi: "(गद्यांश के आधार पर) 1973 में उत्तराखंड में 'चिपको आंदोलन' का नेतृत्व किसने किया था?", optsEn: ["Sunderlal Bahuguna", "M.S. Swaminathan", "Salim Ali", "Verghese Kurien"], optsHi: ["सुंदरलाल बहुगुणा", "एम.एस. स्वामीनाथन", "सलीम अली", "वर्गीज कुरियन"], ans: 0, hint: "Mentioned in the last sentence of the passage.", exp: "Sunderlal Bahuguna led the Chipko Movement in 1973." },
+            { id: 40, subject: "evs", chapter: "EVS Passage", isPassageQ: true, qEn: "(Based on Passage) What did villagers do in the Chipko Movement to save trees?", qHi: "(गद्यांश के आधार पर) चिपको आंदोलन में ग्रामीणों ने पेड़ों को बचाने के लिए क्या किया?", optsEn: ["Hugged the trees", "Built stone walls", "Left the village", "Cut the branches"], optsHi: ["पेड़ों से चिपक गए", "पत्थर की दीवार बनाई", "गाँव छोड़ दिया", "टहनियाँ काट दीं"], ans: 0, hint: "'Chipko' literally means to hug or cling.", exp: "Villagers hugged trees to protect them from being cut down." },
+
+            // ---------- SUBJECT 3: MATHS / ARITHMETIC (Q41 - Q60) ----------
+            { id: 41, subject: "maths", qEn: "What is the place value of 7 in the number 4,78,520?", qHi: "संख्या 4,78,520 में 7 का स्थानीय मान (Place Value) क्या है?", optsEn: ["7,000", "70,000", "700", "7,00,000"], optsHi: ["7,000", "70,000", "700", "7,00,000"], ans: 1, hint: "7 is at the ten-thousands place.", exp: "7 × 10,000 = 70,000." },
+            { id: 42, subject: "maths", qEn: "Find the LCM of 12, 18, and 24.", qHi: "12, 18 और 24 का ल.स. (LCM) ज्ञात करें।", optsEn: ["36", "48", "72", "96"], optsHi: ["36", "48", "72", "96"], ans: 2, hint: "Smallest number divisible by 12, 18, and 24.", exp: "72 is divisible by 12 (×6), 18 (×4), and 24 (×3)." },
+            { id: 43, subject: "maths", qEn: "What is the HCF of 36 and 48?", qHi: "36 और 48 का म.स. (HCF) क्या होगा?", optsEn: ["6", "12", "18", "24"], optsHi: ["6", "12", "18", "24"], ans: 1, hint: "Largest number that divides both 36 and 48.", exp: "36 = 12×3 and 48 = 12×4, so HCF = 12." },
+            { id: 44, subject: "maths", qEn: "Simplify: 25 + 15 ÷ 3 × 2 - 5", qHi: "सरल करें: 25 + 15 ÷ 3 × 2 - 5", optsEn: ["30", "25", "35", "20"], optsHi: ["30", "25", "35", "20"], ans: 0, hint: "Use BODMAS: first divide 15÷3=5, then multiply 5×2=10.", exp: "25 + (5 × 2) - 5 = 25 + 10 - 5 = 30." },
+            { id: 45, subject: "maths", qEn: "Convert 3/4 into a percentage:", qHi: "3/4 को प्रतिशत में बदलें:", optsEn: ["25%", "50%", "75%", "80%"], optsHi: ["25%", "50%", "75%", "80%"], ans: 2, hint: "Multiply (3/4) by 100.", exp: "(3/4) × 100 = 75%." },
+            { id: 46, subject: "maths", qEn: "A shopkeeper bought a bag for ₹400 and sold it for ₹460. Find his profit percentage.", qHi: "एक दुकानदार ने ₹400 में एक बैग खरीदा और ₹460 में बेचा। उसका लाभ प्रतिशत ज्ञात करें।", optsEn: ["10%", "12%", "15%", "20%"], optsHi: ["10%", "12%", "15%", "20%"], ans: 2, hint: "Profit = ₹60. Profit % = (60 / 400) × 100.", exp: "(60 / 400) × 100 = 15%." },
+            { id: 47, subject: "maths", qEn: "Find the perimeter of a square whose side is 14 cm.", qHi: "14 सेमी भुजा वाले एक वर्ग का परिमाप (Perimeter) ज्ञात करें।", optsEn: ["28 cm", "42 cm", "56 cm", "196 cm"], optsHi: ["28 सेमी", "42 सेमी", "56 सेमी", "196 सेमी"], ans: 2, hint: "Perimeter of square = 4 × side.", exp: "4 × 14 cm = 56 cm." },
+            { id: 48, subject: "maths", qEn: "Find the area of a rectangle of length 15 m and breadth 8 m.", qHi: "15 मीटर लंबाई और 8 मीटर चौड़ाई वाले आयत का क्षेत्रफल ज्ञात करें।", optsEn: ["46 sq.m", "120 sq.m", "60 sq.m", "23 sq.m"], optsHi: ["46 वर्ग मी", "120 वर्ग मी", "60 वर्ग मी", "23 वर्ग मी"], ans: 1, hint: "Area = Length × Breadth.", exp: "15 × 8 = 120 sq.m." },
+            { id: 49, subject: "maths", qEn: "A train travels 180 km in 3 hours. What is its speed in km/h?", qHi: "एक रेलगाड़ी 3 घंटे में 180 किमी की दूरी तय करती है। उसकी चाल किमी/घंटा में क्या है?", optsEn: ["50 km/h", "60 km/h", "70 km/h", "90 km/h"], optsHi: ["50 किमी/घंटा", "60 किमी/घंटा", "70 किमी/घंटा", "90 किमी/घंटा"], ans: 1, hint: "Speed = Distance ÷ Time.", exp: "180 ÷ 3 = 60 km/h." },
+            { id: 50, subject: "maths", qEn: "Find the Simple Interest on ₹2,000 at 5% per annum for 3 years.", qHi: "₹2,000 पर 5% वार्षिक ब्याज की दर से 3 वर्ष का साधारण ब्याज ज्ञात करें।", optsEn: ["₹200", "₹250", "₹300", "₹350"], optsHi: ["₹200", "₹250", "₹300", "₹350"], ans: 2, hint: "SI = (P × R × T) / 100.", exp: "(2000 × 5 × 3) / 100 = ₹300." },
+            { id: 51, subject: "maths", qEn: "What is the sum of the smallest 4-digit number and the largest 3-digit number?", qHi: "4 अंकों की सबसे छोटी संख्या और 3 अंकों की सबसे बड़ी संख्या का योग क्या है?", optsEn: ["1,999", "1,099", "1,990", "2,000"], optsHi: ["1,999", "1,099", "1,990", "2,000"], ans: 0, hint: "1000 + 999.", exp: "1000 + 999 = 1999." },
+            { id: 52, subject: "maths", qEn: "Find the average of 10, 20, 30, 40, and 50.", qHi: "10, 20, 30, 40 और 50 का औसत (Average) ज्ञात करें।", optsEn: ["25", "30", "35", "40"], optsHi: ["25", "30", "35", "40"], ans: 1, hint: "Sum of all 5 numbers divided by 5.", exp: "150 ÷ 5 = 30." },
+            { id: 53, subject: "maths", qEn: "Which of the following is a prime number?", qHi: "निम्नलिखित में से कौन-सी एक अभाज्य संख्या (Prime Number) है?", optsEn: ["21", "27", "29", "33"], optsHi: ["21", "27", "29", "33"], ans: 2, hint: "It is only divisible by 1 and itself.", exp: "29 has only two factors: 1 and 29." },
+            { id: 54, subject: "maths", qEn: "Convert 2.5 kilograms into grams:", qHi: "2.5 किलोग्राम को ग्राम में बदलें:", optsEn: ["250 g", "2,500 g", "25,000 g", "205 g"], optsHi: ["250 ग्राम", "2,500 ग्राम", "25,000 ग्राम", "205 ग्राम"], ans: 1, hint: "1 kg = 1000 grams.", exp: "2.5 × 1000 = 2500 grams." },
+            { id: 55, subject: "maths", qEn: "If the cost of 12 pens is ₹96, what is the cost of 7 pens?", qHi: "यदि 12 पेनों का मूल्य ₹96 है, तो 7 पेनों का मूल्य क्या होगा?", optsEn: ["₹48", "₹54", "₹56", "₹64"], optsHi: ["₹48", "₹54", "₹56", "₹64"], ans: 2, hint: "Cost of 1 pen = 96 ÷ 12 = ₹8.", exp: "1 pen = ₹8, so 7 pens = 7 × 8 = ₹56." },
+            { id: 56, subject: "maths", qEn: "What is 20% of 450?", qHi: "450 का 20% कितना होगा?", optsEn: ["45", "80", "90", "100"], optsHi: ["45", "80", "90", "100"], ans: 2, hint: "(20 / 100) × 450.", exp: "0.20 × 450 = 90." },
+            { id: 57, subject: "maths", qEn: "Solve: 3/5 + 1/10 = ?", qHi: "हल करें: 3/5 + 1/10 = ?", optsEn: ["4/15", "7/10", "4/10", "6/10"], optsHi: ["4/15", "7/10", "4/10", "6/10"], ans: 1, hint: "3/5 = 6/10. Now add 6/10 + 1/10.", exp: "6/10 + 1/10 = 7/10." },
+            { id: 58, subject: "maths", qEn: "How many minutes are there in 3 hours 40 minutes?", qHi: "3 घंटे 40 मिनट में कुल कितने मिनट होते हैं?", optsEn: ["180 min", "200 min", "220 min", "240 min"], optsHi: ["180 मिनट", "200 मिनट", "220 मिनट", "240 मिनट"], ans: 2, hint: "(3 × 60) + 40.", exp: "180 + 40 = 220 minutes." },
+            { id: 59, subject: "maths", qEn: "The sum of all three angles of a triangle is always:", qHi: "एक त्रिभुज के तीनों अंतः कोणों का योग सदैव कितना होता है?", optsEn: ["90°", "180°", "270°", "360°"], optsHi: ["90°", "180°", "270°", "360°"], ans: 1, hint: "It equals two right angles.", exp: "The angle sum property of any triangle is 180°." },
+            { id: 60, subject: "maths", qEn: "Write Roman numeral 'XLIV' in Hindu-Arabic numbers:", qHi: "रोमन संख्या 'XLIV' को हिंदू-अरेबिक अंकों में लिखें:", optsEn: ["44", "46", "64", "54"], optsHi: ["44", "46", "64", "54"], ans: 0, hint: "XL = 40 and IV = 4.", exp: "40 + 4 = 44." },
+
+            // ---------- SUBJECT 4: HINDI GRAMMAR / हिंदी व्याकरण (Q61 - Q80) ----------
+            { id: 61, subject: "hindi", qEn: "Hindi: 'सूर्य' (Sun) का पर्यायवाची शब्द कौन-सा है?", qHi: "'सूर्य' का पर्यायवाची शब्द कौन-सा है?", optsEn: ["शशि", "दिनकर", "नीरज", "पवन"], optsHi: ["शशि", "दिनकर", "नीरज", "पवन"], ans: 1, hint: "जो दिन करता है उसे दिनकर कहते हैं।", exp: "दिनकर, भास्कर, रवि सूर्य के पर्यायवाची हैं।" },
+            { id: 62, subject: "hindi", qEn: "Hindi: 'आशा' शब्द का विलोम (Opposite) क्या है?", qHi: "'आशा' शब्द का विलोम शब्द क्या है?", optsEn: ["निराशा", "उम्मीद", "प्रसन्नता", "इच्छा"], optsHi: ["निराशा", "उम्मीद", "प्रसन्नता", "इच्छा"], ans: 0, hint: "'आशा' का उल्टा शब्द चुनें।", exp: "आशा का विलोम 'निराशा' होता है।" },
+            { id: 63, subject: "hindi", qEn: "Hindi: 'नौ दो ग्यारह होना' मुहावरे का सही अर्थ क्या है?", qHi: "'नौ दो ग्यारह होना' मुहावरे का सही अर्थ क्या है?", optsEn: ["गिनती करना", "भाग जाना", "एक साथ रहना", "सो जाना"], optsHi: ["गिनती करना", "भाग जाना", "एक साथ रहना", "सो जाना"], ans: 1, hint: "पुलिस को देखकर चोर नौ दो ग्यारह हो गए।", exp: "'नौ दो ग्यारह होना' का अर्थ 'भाग जाना' होता है।" },
+            { id: 64, subject: "hindi", qEn: "Hindi: जो ईश्वर में विश्वास रखता हो — वाक्यांश के लिए एक शब्द:", qHi: "जो ईश्वर में विश्वास रखता हो — वाक्यांश के लिए एक शब्द है:", optsEn: ["नास्तिक", "आस्तिक", "विद्वान", "साक्षर"], optsHi: ["नास्तिक", "आस्तिक", "विद्वान", "साक्षर"], ans: 1, hint: "न मानने वाले को नास्तिक कहते हैं।", exp: "ईश्वर में विश्वास रखने वाले को 'आस्तिक' कहते हैं।" },
+            { id: 65, subject: "hindi", qEn: "Hindi: शुद्ध वर्तनी (Correct Spelling) वाला शब्द चुनें:", qHi: "शुद्ध वर्तनी वाला शब्द चुनें:", optsEn: ["आर्शीवाद", "आशीर्वाद", "आशिरवाद", "अशीर्वाद"], optsHi: ["आर्शीवाद", "आशीर्वाद", "आशिरवाद", "अशीर्वाद"], ans: 1, hint: "रेफ (र्) 'व' के ऊपर लगता है।", exp: "'आशीर्वाद' शुद्ध वर्तनी है।" },
+            { id: 66, subject: "hindi", qEn: "Hindi: 'कमल' का पर्यायवाची शब्द कौन-सा है?", qHi: "'कमल' का पर्यायवाची शब्द कौन-सा है?", optsEn: ["जलज", "जलद", "जलधि", "अग्नि"], optsHi: ["जलज", "जलद", "जलधि", "अग्नि"], ans: 0, hint: "जल में जन्म लेने वाला (जल + ज)।", exp: "जलज, पंकज, नीरज कमल के पर्यायवाची हैं।" },
+            { id: 67, subject: "hindi", qEn: "Hindi: 'प्राचीन' शब्द का विलोम क्या होगा?", qHi: "'प्राचीन' शब्द का विलोम क्या होगा?", optsEn: ["पुराना", "नवीन", "कठिन", "सरल"], optsHi: ["पुराना", "नवीन", "कठिन", "सरल"], ans: 1, hint: "प्राचीन का अर्थ पुराना होता है।", exp: "प्राचीन का विलोम 'नवीन' (नया) होता है।" },
+            { id: 68, subject: "hindi", qEn: "Hindi: 'हिमालय' शब्द में कौन-सी संज्ञा है?", qHi: "'हिमालय' शब्द में कौन-सी संज्ञा है?", optsEn: ["जातिवाचक", "व्यक्तिवाचक", "भाववाचक", "द्रव्यवाचक"], optsHi: ["जातिवाचक संज्ञा", "व्यक्तिवाचक संज्ञा", "भाववाचक संज्ञा", "द्रव्यवाचक संज्ञा"], ans: 1, hint: "यह एक विशेष पर्वत का नाम है।", exp: "किसी विशेष स्थान या पर्वत के नाम को व्यक्तिवाचक संज्ञा कहते हैं।" },
+            { id: 69, subject: "hindi", qEn: "Hindi: 'विद्यालय' का सही संधि-विच्छेद क्या है?", qHi: "'विद्यालय' का सही संधि-विच्छेद क्या है?", optsEn: ["विद्या + आलय", "विद्य + आलय", "विद्या + लय", "विद + आलय"], optsHi: ["विद्या + आलय", "विद्य + आलय", "विद्या + लय", "विद + आलय"], ans: 0, hint: "विद्या का घर (आलय)।", exp: "विद्या + आलय = विद्यालय (दीर्घ संधि)।" },
+            { id: 70, subject: "hindi", qEn: "Hindi: 'आँखों का तारा' मुहावरे का अर्थ है:", qHi: "'आँखों का तारा' मुहावरे का अर्थ है:", optsEn: ["बहुत प्यारा", "बहुत दुखी", "अंधा होना", "गुस्सा होना"], optsHi: ["बहुत प्यारा", "बहुत दुखी", "अंधा होना", "गुस्सा होना"], ans: 0, hint: "हर बच्चा अपनी माँ की आँखों का तारा होता है।", exp: "'आँखों का तारा' का अर्थ 'अत्यंत प्रिय या बहुत प्यारा' है।" },
+            { id: 71, subject: "hindi", qEn: "Hindi: 'कवि' शब्द का स्त्रीलिंग रूप क्या है?", qHi: "'कवि' शब्द का स्त्रीलिंग रूप क्या है?", optsEn: ["कवियत्री", "कवयित्री", "कवीत्री", "कवियित्री"], optsHi: ["कवियत्री", "कवयित्री", "कवीत्री", "कवियित्री"], ans: 1, hint: "'य' पर छोटी इ की मात्रा और 'त्र' पर बड़ी ई की मात्रा।", exp: "'कवि' का शुद्ध स्त्रीलिंग 'कवयित्री' होता है।" },
+            { id: 72, subject: "hindi", qEn: "Hindi: 'पृथ्वी' का पर्यायवाची शब्द कौन-सा है?", qHi: "'पृथ्वी' का पर्यायवाची शब्द कौन-सा है?", optsEn: ["गगन", "वसुंधरा", "समीर", "समुद्र"], optsHi: ["गगन", "वसुंधरा", "समीर", "समुद्र"], ans: 1, hint: "धरती, भूमि, वसुंधरा।", exp: "वसुंधरा, धरा और भूमि पृथ्वी के पर्यायवाची हैं।" },
+            { id: 73, subject: "hindi", qEn: "Hindi: 'अमृत' शब्द का विलोम शब्द चुनें:", qHi: "'अमृत' शब्द का विलोम शब्द चुनें:", optsEn: ["सुधा", "विष", "जल", "पीयूष"], optsHi: ["सुधा", "विष", "जल", "पीयूष"], ans: 1, hint: "अमृत का उल्टा जहर होता है।", exp: "अमृत का विलोम 'विष' होता है।" },
+            { id: 74, subject: "hindi", qEn: "Hindi: जो सब कुछ जानता हो — एक शब्द लिखें:", qHi: "जो सब कुछ जानता हो — वाक्यांश के लिए एक शब्द है:", optsEn: ["अल्पज्ञ", "सर्वज्ञ", "अज्ञानी", "कृतज्ञ"], optsHi: ["अल्पज्ञ", "सर्वज्ञ", "अज्ञानी", "कृतज्ञ"], ans: 1, hint: "सर्व + ज्ञ।", exp: "सब कुछ जानने वाले को 'सर्वज्ञ' कहते हैं।" },
+            { id: 75, subject: "hindi", qEn: "Hindi: 'नीला आकाश' में विशेषण शब्द कौन-सा है?", qHi: "'नीला आकाश' में विशेषण शब्द कौन-सा है?", optsEn: ["नीला", "आकाश", "दोनों", "कोई नहीं"], optsHi: ["नीला", "आकाश", "दोनों", "कोई नहीं"], ans: 0, hint: "जो शब्द संज्ञा की विशेषता बताए।", exp: "'नीला' शब्द आकाश के रंग की विशेषता बता रहा है, अतः यह विशेषण है।" },
+            { id: 76, subject: "hindi", qEn: "Hindi: 'ईद का चाँद होना' मुहावरे का अर्थ क्या है?", qHi: "'ईद का चाँद होना' मुहावरे का अर्थ क्या है?", optsEn: ["बहुत दिनों बाद दिखाई देना", "रोज मिलना", "रात को जागना", "त्योहार मनाना"], optsHi: ["बहुत दिनों बाद दिखाई देना", "रोज मिलना", "रात को जागना", "त्योहार मनाना"], ans: 0, hint: "जब कोई मित्र बहुत समय बाद मिले।", exp: "'ईद का चाँद होना' का अर्थ 'बहुत दिनों बाद दिखाई देना' है।" },
+            { id: 77, subject: "hindi", qEn: "Hindi: 'जल' का पर्यायवाची शब्द कौन-सा नहीं है?", qHi: "'जल' का पर्यायवाची शब्द कौन-सा नहीं है?", optsEn: ["नीर", "वारि", "अनल", "तोय"], optsHi: ["नीर", "वारि", "अनल", "तोय"], ans: 2, hint: "'अनल' का अर्थ आग (अग्नि) होता है।", exp: "अनल आग का पर्यायवाची है, जबकि नीर, वारि, तोय जल के पर्यायवाची हैं।" },
+            { id: 78, subject: "hindi", qEn: "Hindi: 'उपकार' शब्द का विलोम क्या है?", qHi: "'उपकार' शब्द का विलोम क्या है?", optsEn: ["परोपकार", "अपकार", "सत्कार", "आकार"], optsHi: ["परोपकार", "अपकार", "सत्कार", "आकार"], ans: 1, hint: "बुराई या अहित करना।", exp: "उपकार का विलोम 'अपकार' होता है।" },
+            { id: 79, subject: "hindi", qEn: "Hindi: 'सप्ताह में एक बार होने वाला' कहलाता है:", qHi: "सप्ताह में एक बार होने वाला कहलाता है:", optsEn: ["दैनिक", "साप्ताहिक", "मासिक", "वार्षिक"], optsHi: ["दैनिक", "साप्ताहिक", "मासिक", "वार्षिक"], ans: 1, hint: "सप्ताह + इक।", exp: "सप्ताह में एक बार होने वाले को 'साप्ताहिक' कहते हैं।" },
+            { id: 80, subject: "hindi", qEn: "Hindi: 'परिश्रम' करने से ही सफलता मिलती है — 'परिश्रम' का अर्थ है:", qHi: "'परिश्रम' करने से ही सफलता मिलती है — 'परिश्रम' का अर्थ है:", optsEn: ["आलस्य", "मेहनत", "आराम", "खेल"], optsHi: ["आलस्य", "मेहनत", "आराम", "खेल"], ans: 1, hint: "कठिन कार्य या श्रम।", exp: "परिश्रम का अर्थ 'मेहनत' होता है।" }
+        ];
+
+        // =========================================================================
+        // 3. 50 हिंदी अनुच्छेद (50 Passages × 5 Questions = 250 Questions)
+        // =========================================================================
+        const ANUCHED_TOPICS = [
+            { title: "परिश्रम का महत्व", text: "परिश्रम ही सफलता की कुंजी है। संसार में जितने भी महान व्यक्ति हुए हैं, उन्होंने कठिन परिश्रम के बल पर ही ऊँचाइयों को छुआ है। आलस्य मनुष्य का सबसे बड़ा शत्रु है। जो विद्यार्थी नियमित रूप से अध्ययन और परिश्रम करते हैं, वे कठिन से कठिन परीक्षा में भी सफल होते हैं। प्रकृति भी हमें निरंतर कर्म करने की प्रेरणा देती है।",
+              qs: [
+                  { q: "सफलता की कुंजी क्या है?", opts: ["आलस्य", "परिश्रम", "धन", "भाग्य"], ans: 1 },
+                  { q: "मनुष्य का सबसे बड़ा शत्रु किसे कहा गया है?", opts: ["परिश्रम", "अध्ययन", "आलस्य", "प्रकृति"], ans: 2 },
+                  { q: "महान व्यक्तियों ने ऊँचाइयों को कैसे छुआ है?", opts: ["कठिन परिश्रम से", "आराम करके", "बिना पढ़े", "सोकर"], ans: 0 },
+                  { q: "प्रकृति हमें क्या प्रेरणा देती है?", opts: ["रुकने की", "निरंतर कर्म करने की", "डरने की", "आलस्य करने की"], ans: 1 },
+                  { q: "'शत्रु' शब्द का विलोम क्या होगा?", opts: ["दुश्मन", "मित्र", "राजा", "सेवक"], ans: 1 }
+              ]
+            },
+            { title: "वृक्षों का जीवन में महत्व", text: "वृक्ष हमारे सच्चे मित्र हैं। वे हमें प्राणवायु ऑक्सीजन, फल, फूल, छाया और औषधियाँ प्रदान करते हैं। वृक्ष वर्षा लाने में सहायक होते हैं और भूमि के कटाव को रोकते हैं। यदि हम अधिक से अधिक पेड़ लगाएंगे, तो हमारा पर्यावरण स्वच्छ और हरा-भरा रहेगा। इसलिए हर व्यक्ति को अपने जीवन में कम से कम एक वृक्ष अवश्य लगाना चाहिए।",
+              qs: [
+                  { q: "हमारे सच्चे मित्र कौन हैं?", opts: ["पत्थर", "वृक्ष", "प्लास्टिक", "वाहन"], ans: 1 },
+                  { q: "वृक्ष हमें कौन-सी प्राणवायु देते हैं?", opts: ["कार्बन डाइऑक्साइड", "नाइट्रोजन", "ऑक्सीजन", "हीलियम"], ans: 2 },
+                  { q: "वृक्ष भूमि के किस नुकसान को रोकते हैं?", opts: ["कटाव को", "सिंचाई को", "हरियाली को", "वर्षा को"], ans: 0 },
+                  { q: "पर्यावरण स्वच्छ रखने के लिए हमें क्या करना चाहिए?", opts: ["पेड़ काटने चाहिए", "अधिक पेड़ लगाने चाहिए", "कचरा फैलाना चाहिए", "जंगल जलाने चाहिए"], ans: 1 },
+                  { q: "'स्वच्छ' शब्द का अर्थ है:", opts: ["गंदा", "साफ़", "पुराना", "काला"], ans: 1 }
+              ]
+            },
+            { title: "समय का सदुपयोग", text: "समय अत्यंत मूल्यवान है। बीता हुआ समय कभी लौटकर वापस नहीं आता। जो व्यक्ति समय का सम्मान करता है और हर कार्य समय पर पूरा करता है, समय भी उसका सम्मान करता है। विद्यार्थियों को खेलने, पढ़ने और आराम करने का एक निश्चित समय बनाना चाहिए। समय बर्बाद करने वाले लोगों को बाद में पछताना पड़ता है।",
+              qs: [
+                  { q: "गद्यांश के अनुसार अत्यंत मूल्यवान क्या है?", opts: ["सोना", "समय", "कपड़े", "खिलौने"], ans: 1 },
+                  { q: "कौन-सी चीज़ कभी लौटकर वापस नहीं आती?", opts: ["पैसा", "बीता हुआ समय", "मित्र", "पुस्तक"], ans: 1 },
+                  { q: "समय किसका सम्मान करता है?", opts: ["जो समय बर्बाद करे", "जो समय का सम्मान करे", "जो देर से उठे", "जो काम टाले"], ans: 1 },
+                  { q: "बाद में किसे पछताना पड़ता है?", opts: ["मेहनती को", "समय बर्बाद करने वालों को", "खिलाड़ियों को", "शिक्षकों को"], ans: 1 },
+                  { q: "'सम्मान' शब्द का विलोम है:", opts: ["आदर", "अपमान", "पुरस्कार", "प्यार"], ans: 1 }
+              ]
+            },
+            { title: "पुस्तकों से मित्रता", text: "अच्छी पुस्तकें मनुष्य की सबसे अच्छी मार्गदर्शक होती हैं। पुस्तकें हमें ज्ञान, संस्कार और नई सोच प्रदान करती हैं। एकांत में पुस्तकें हमारा मनोरंजन भी करती हैं और हमें सही-गलत की पहचान कराती हैं। महापुरुषों की जीवनियाँ पढ़कर हमें जीवन में आगे बढ़ने का साहस मिलता है। हमें प्रतिदिन कुछ समय अच्छी पुस्तकें अवश्य पढ़नी चाहिए।",
+              qs: [
+                  { q: "मनुष्य की सबसे अच्छी मार्गदर्शक कौन होती हैं?", opts: ["अच्छी पुस्तकें", "बुरी आदतें", "टीवी", "आलस्य"], ans: 0 },
+                  { q: "पुस्तकें हमें क्या प्रदान करती हैं?", opts: ["ज्ञान और संस्कार", "क्रोध", "भय", "अज्ञान"], ans: 0 },
+                  { q: "महापुरुषों की जीवनियाँ पढ़ने से क्या मिलता है?", opts: ["डर", "आगे बढ़ने का साहस", "नींद", "थकान"], ans: 1 },
+                  { q: "एकांत में पुस्तकें क्या करती हैं?", opts: ["मनोरंजन और मार्गदर्शन", "शोर", "नुकसान", "झगड़ा"], ans: 0 },
+                  { q: "'साहस' शब्द का अर्थ है:", opts: ["हिम्मत", "डर", "कमजोरी", "हार"], ans: 0 }
+              ]
+            },
+            { title: "जल संरक्षण", text: "जल ही जीवन है। बिना जल के पृथ्वी पर जीवन की कल्पना भी नहीं की जा सकती। हमारी पृथ्वी पर पीने योग्य मीठा जल बहुत सीमित मात्रा में है। हमें नल को खुला नहीं छोड़ना चाहिए और वर्षा के जल का संचय करना चाहिए। यदि हम आज जल बचाएंगे, तभी हमारा भविष्य सुरक्षित रहेगा।",
+              qs: [
+                  { q: "पृथ्वी पर किसके बिना जीवन संभव नहीं है?", opts: ["जल के बिना", "सोने के बिना", "मोबाइल के बिना", "कार के बिना"], ans: 0 },
+                  { q: "पृथ्वी पर पीने योग्य जल की मात्रा कैसी है?", opts: ["असीमित", "बहुत सीमित", "खारा", "बेकार"], ans: 1 },
+                  { q: "हमें किस जल का संचय करना चाहिए?", opts: ["वर्षा के जल का", "गंदे नाले का", "समुद्र का", "तेल का"], ans: 0 },
+                  { q: "हमारा भविष्य कब सुरक्षित रहेगा?", opts: ["जब हम आज जल बचाएंगे", "जब पानी बहाएंगे", "जब पेड़ काटेंगे", "जब नल खुला छोड़ेंगे"], ans: 0 },
+                  { q: "'जल' का पर्यायवाची शब्द है:", opts: ["अग्नि", "नीर", "पवन", "आकाश"], ans: 1 }
+              ]
+            }
+        ];
+
+        // 50 अनुच्छेद पूरे करने के लिए 45 अतिरिक्त विविध ज्ञानवर्धक अनुच्छेद जनरेट करें
+        const EXTRA_TOPICS = [
+            "अनुशासन का महत्व", "स्वास्थ्य ही धन है", "ईमानदारी सबसे अच्छी नीति", "खेलकूद के लाभ", "स्वच्छ भारत अभियान",
+            "मधुमक्खी का परिश्रम", "नदियों की उपयोगिता", "गाँव का जीवन", "विज्ञान के चमत्कार", "मातृभूमि के प्रति प्रेम",
+            "सच्चा मित्र", "सूर्योदय का दृश्य", "हिमालय पर्वत", "गंगा नदी", "किसान का जीवन",
+            "प्रातःकाल की सैर", "अहिंसा का मार्ग", "परोपकार की भावना", "राष्ट्रीय ध्वज तिरंगा", "मोर हमारा राष्ट्रीय पक्षी",
+            "बाघ का संरक्षण", "कंप्यूटर का युग", "योग और प्राणायाम", "दीपावली का उत्सव", "होली का संदेश",
+            "रक्षाबंधन का पर्व", "गणतंत्र दिवस", "स्वतंत्रता दिवस", "गांधी जयंती", "गुरु का स्थान",
+            "माता-पिता की सेवा", "सत्य बोलने के लाभ", "विनम्रता का गुण", "पुस्तकालय का महत्व", "यातायात के नियम",
+            "प्रदूषण की समस्या", "प्लास्टिक से हानि", "सौर ऊर्जा", "चंद्रयान अभियान", "भारत की विविधता में एकता",
+            "चींटी से सीख", "समय की पाबंदी", "अच्छी आदतें", "संस्कार और शिक्षा", "आत्मविश्वास की शक्ति"
+        ];
+
+        const ANUCHED_50 = [];
+        ANUCHED_TOPICS.forEach((item, idx) => {
+            ANUCHED_50.push({ id: idx + 1, title: item.title, text: item.text, qs: item.qs });
+        });
+        EXTRA_TOPICS.forEach((topic, i) => {
+            const num = ANUCHED_50.length + 1;
+            ANUCHED_50.push({
+                id: num,
+                title: topic,
+                text: `${topic} हमारे जीवन और समाज के विकास में अत्यंत महत्वपूर्ण भूमिका निभाता है। जो विद्यार्थी बचपन से ही ${topic} के सिद्धांतों को अपनाते हैं, वे जीवन में सदैव सम्मान, सफलता और प्रसन्नता प्राप्त करते हैं। हमें अपने परिवार, विद्यालय और देश की उन्नति के लिए सदैव सकारात्मक सोच और कर्तव्यनिष्ठा के साथ कार्य करना चाहिए।`,
+                qs: [
+                    { q: `इस अनुच्छेद का मुख्य विषय क्या है?`, opts: [topic, "आलस्य", "क्रोध", "असफलता"], ans: 0 },
+                    { q: `${topic} को अपनाने वाले विद्यार्थी क्या प्राप्त करते हैं?`, opts: ["सम्मान और सफलता", "निराशा", "हार", "भय"], ans: 0 },
+                    { q: `हमें किसकी उन्नति के लिए कार्य करना चाहिए?`, opts: ["केवल स्वयं की", "परिवार, विद्यालय और देश की", "किसी की नहीं", "शत्रुओं की"], ans: 1 },
+                    { q: `हमें कैसी सोच रखनी चाहिए?`, opts: ["सकारात्मक सोच", "नकारात्मक सोच", "स्वार्थी सोच", "डरपोक सोच"], ans: 0 },
+                    { q: `'सफलता' शब्द का विलोम क्या है?`, opts: ["विजय", "असफलता", "उन्नति", "प्रगति"], ans: 1 }
+                ]
+            });
+        });
+
+        // =========================================================================
+        // 4. ऐप स्टेट (1 Q = 1.25 Marks, Auto-Shuffle on Reload, 2 Hr & 1.30 Hr Timer)
+        // =========================================================================
+        const STORAGE_KEY = "navodaya_jnvst_80_state_v2";
+        let state = {
+            studentName: "",
+            selectedSubject: "all",
+            language: "both",
+            playMode: "list",
+            wrongOnly: false,
+            currentSingleIdx: 0,
+            userAnswers: {},        // { qId: chosenOptIdx }
+            questionOrder: QUESTIONS_80.map(q => q.id),
+            optionOrders: {},       // { qId: [0,1,2,3] }
+            hiddenOptions: {},      // 50-50
+            shownHints: {},         // Hint
+            lifelines5050: 3,
+            lifelinesHint: 3,
+            timerSeconds: 7200,     // Default 2 Hours (7200s)
+            timerRunning: false,
+            soundOn: true,
+            currentAnuchedIdx: 0,
+            anuchedAnswers: {}      // { "anuchedId_qIdx": chosenOpt }
+        };
+
+        let timerHandle = null;
+
+        // हर पेज रीलोड पर पुराना रिकॉर्ड (नाम) सुरक्षित रखते हुए प्रश्नों व विकल्पों को नए क्रम में शफ़ल करें
+        function initFreshShuffledSession() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    const saved = JSON.parse(raw);
+                    if (saved.studentName) state.studentName = saved.studentName;
+                    if (saved.language) state.language = saved.language;
+                    if (typeof saved.soundOn === "boolean") state.soundOn = saved.soundOn;
+                }
+            } catch (e) {}
+
+            // प्रश्नों का क्रम और विकल्प (A, B, C, D) दोनों शफ़ल करें ताकि रीलोड पर प्रश्न बदल जाएं
+            shuffleArray(state.questionOrder);
+            QUESTIONS_80.forEach(q => {
+                const opts = [0, 1, 2, 3];
+                shuffleArray(opts);
+                state.optionOrders[q.id] = opts;
+            });
+            shuffleArray(ANUCHED_50);
+            saveState();
+        }
+
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+        }
+
+        function saveState() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            } catch (e) {}
+        }
+
+        // साउंड इफ़ेक्ट
+        let audioCtx = null;
+        function playTone(type) {
+            if (!state.soundOn) return;
+            try {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                if (type === 'correct') {
+                    osc.frequency.setValueAtTime(520, now);
+                    osc.frequency.exponentialRampToValueAtTime(780, now + 0.15);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+                    osc.start(now); osc.stop(now + 0.22);
+                } else if (type === 'wrong') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(210, now);
+                    osc.frequency.linearRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.08, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+                    osc.start(now); osc.stop(now + 0.22);
+                }
+            } catch (e) {}
+        }
+
+        function toggleSound() {
+            state.soundOn = !state.soundOn;
+            document.getElementById('sound-btn').innerText = state.soundOn ? '🔊 Sound ON' : '🔇 Sound OFF';
+            saveState();
+        }
+
+        // =========================================================================
+        // 5. टाइमर (2 घंटे = 7200s, 1.30 घंटे = 5400s)
+        // =========================================================================
+        function formatHMS(sec) {
+            const h = Math.floor(sec / 3600);
+            const m = Math.floor((sec % 3600) / 60);
+            const s = sec % 60;
+            return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+        }
+
+        function updateTimerDisplay() {
+            const disp = document.getElementById('timer-display');
+            const box = document.getElementById('timer-box');
+            const btn = document.getElementById('timer-pause-btn');
+            disp.innerText = formatHMS(state.timerSeconds);
+            btn.innerText = state.timerRunning ? '⏸' : '▶';
+            if (state.timerSeconds > 0 && state.timerSeconds <= 300) {
+                box.classList.add('timer-urgent');
+            } else {
+                box.classList.remove('timer-urgent');
+            }
+        }
+
+        function startPresetTimer(seconds) {
+            clearInterval(timerHandle);
+            state.timerSeconds = seconds;
+            state.timerRunning = true;
+            updateTimerDisplay();
+            runTimerInterval();
+        }
+
+        function toggleTimerPause() {
+            if (state.timerRunning) {
+                clearInterval(timerHandle);
+                state.timerRunning = false;
+            } else {
+                if (state.timerSeconds <= 0) state.timerSeconds = 7200;
+                state.timerRunning = true;
+                runTimerInterval();
+            }
+            updateTimerDisplay();
+        }
+
+        function runTimerInterval() {
+            clearInterval(timerHandle);
+            timerHandle = setInterval(() => {
+                if (!state.timerRunning) return;
+                if (state.timerSeconds > 0) {
+                    state.timerSeconds--;
+                    updateTimerDisplay();
+                } else {
+                    clearInterval(timerHandle);
+                    state.timerRunning = false;
+                    updateTimerDisplay();
+                    openReportCard();
+                }
+            }, 1000);
+        }
+
+        // =========================================================================
+        // 6. JNVST 1.25 अंक गणना एवं लाइव स्कोरकार्ड
+        // =========================================================================
+        function updateJNVSTScorecard() {
+            let attempted = 0, correct = 0, wrong = 0;
+            const subCorrect = { mental: 0, evs: 0, maths: 0, hindi: 0 };
+
+            QUESTIONS_80.forEach(q => {
+                if (state.userAnswers.hasOwnProperty(q.id)) {
+                    attempted++;
+                    if (state.userAnswers[q.id] === q.ans) {
+                        correct++;
+                        subCorrect[q.subject]++;
+                    } else {
+                        wrong++;
+                    }
+                }
+            });
+
+            // 1 सही प्रश्न = 1.25 अंक; गलत/छूटे हुए प्रश्नों के कारण 100 अंक (100%) में से स्वतः कटौती दिखती है
+            const totalMarks = (correct * 1.25).toFixed(2);
+            const percentage = (correct * 1.25).toFixed(2);
+
+            document.getElementById('stat-attempted').innerText = attempted;
+            document.getElementById('stat-correct').innerText = correct;
+            document.getElementById('stat-wrong').innerText = wrong;
+            document.getElementById('wrong-count-badge').innerText = wrong;
+            document.getElementById('stat-marks').innerText = totalMarks;
+            document.getElementById('stat-pct').innerText = `${percentage}%`;
+
+            document.getElementById('sub-marks-mental').innerText = `${(subCorrect.mental * 1.25).toFixed(2)} / 25`;
+            document.getElementById('sub-marks-evs').innerText = `${(subCorrect.evs * 1.25).toFixed(2)} / 25`;
+            document.getElementById('sub-marks-maths').innerText = `${(subCorrect.maths * 1.25).toFixed(2)} / 25`;
+            document.getElementById('sub-marks-hindi').innerText = `${(subCorrect.hindi * 1.25).toFixed(2)} / 25`;
+        }
+
+        // =========================================================================
+        // 7. प्रश्न रेंडरिंग (EVS गद्यांश सहित)
+        // =========================================================================
+        function getFilteredQuestions() {
+            return state.questionOrder
+                .map(id => QUESTIONS_80.find(q => q.id === id))
+                .filter(q => {
+                    if (!q) return false;
+                    if (state.selectedSubject !== 'all' && q.subject !== state.selectedSubject) return false;
+                    if (state.wrongOnly) {
+                        const ans = state.userAnswers[q.id];
+                        if (ans === undefined || ans === q.ans) return false;
+                    }
+                    return true;
+                });
+        }
+
+        function renderQuestionCard(q, indexNum) {
+            const chosen = state.userAnswers[q.id];
+            const isAnswered = chosen !== undefined;
+            const optOrder = state.optionOrders[q.id] || [0, 1, 2, 3];
+            const removed = state.hiddenOptions[q.id] || [];
+            const showHint = !!state.shownHints[q.id];
+            const letters = ['A', 'B', 'C', 'D'];
+
+            const subNames = {
+                mental: "🧠 Mental Ability",
+                evs: q.chapter ? `🌿 EVS • ${q.chapter}` : "🌿 EVS",
+                maths: "➗ Maths",
+                hindi: "🔤 Hindi"
+            };
+
+            // यदि यह EVS गद्यांश (Q36-Q40) का प्रश्न है, तो ऊपर गद्यांश बॉक्स दिखाएं
+            let passageBanner = "";
+            if (q.isPassageQ) {
+                const pText = state.language === 'en' ? EVS_PASSAGE.textEn : (state.language === 'hi' ? EVS_PASSAGE.textHi : `${EVS_PASSAGE.textEn}<br><span class="text-slate-700 mt-1 block">${EVS_PASSAGE.textHi}</span>`);
+                passageBanner = `
+                    <div class="mb-4 p-3.5 rounded-xl bg-emerald-50/90 border-2 border-emerald-200 text-xs sm:text-sm leading-relaxed">
+                        <div class="font-extrabold text-emerald-900 mb-1">${EVS_PASSAGE.titleHi}</div>
+                        <div class="text-slate-800">${pText}</div>
+                    </div>
+                `;
+            }
+
+            let qTitle = state.language === 'en' ? q.qEn : (state.language === 'hi' ? q.qHi : `${q.qEn}<div class="text-sm font-medium text-slate-600 mt-1">${q.qHi}</div>`);
+
+            let optsHTML = "";
+            for (let i = 0; i < 4; i++) {
+                const origIdx = optOrder[i];
+                const is5050Hidden = removed.includes(origIdx) && !isAnswered;
+                let cls = "border-slate-200 bg-white text-slate-800";
+                let badge = "";
+
+                if (is5050Hidden) {
+                    cls = "border-slate-100 bg-slate-100 text-slate-300 line-through opacity-50";
+                } else if (isAnswered) {
+                    if (origIdx === q.ans) {
+                        cls = "opt-correct";
+                        badge = `<span class="ml-auto text-xs text-emerald-700 font-extrabold">✅ +1.25</span>`;
+                    } else if (origIdx === chosen) {
+                        cls = "opt-wrong";
+                        badge = `<span class="ml-auto text-xs text-rose-700 font-extrabold">❌ -1.25</span>`;
+                    } else {
+                        cls = "border-slate-200 bg-slate-50 text-slate-400";
+                    }
+                }
+
+                const optText = state.language === 'en'
+                    ? `${letters[i]}. ${q.optsEn[origIdx]}`
+                    : (state.language === 'hi'
+                        ? `${letters[i]}. ${q.optsHi[origIdx]}`
+                        : `<span class="font-bold">${letters[i]}. ${q.optsEn[origIdx]}</span> <span class="text-xs opacity-80 block sm:inline sm:ml-2">(${q.optsHi[origIdx]})</span>`);
+
+                optsHTML += `
+                    <button onclick="answerQuestion(${q.id}, ${origIdx})" ${(isAnswered || is5050Hidden) ? 'disabled' : ''}
+                        class="option-btn w-full text-left p-3 sm:p-3.5 rounded-xl border-2 ${cls} flex items-center gap-2 text-sm cursor-pointer disabled:cursor-default">
+                        <div class="flex-1">${optText}</div>
+                        ${badge}
+                    </button>
+                `;
+            }
+
+            const hintHTML = showHint ? `<div class="mt-3 p-2.5 rounded-xl bg-indigo-50 border border-indigo-200 text-xs font-semibold text-indigo-900">💡 <strong>Hint:</strong> ${q.hint}</div>` : "";
+            const expHTML = isAnswered ? `<div class="mt-3 p-3 rounded-xl bg-amber-50 border border-amber-200 text-xs sm:text-sm text-amber-950"><strong>📘 व्याख्या (Explanation):</strong> ${q.exp}</div>` : "";
+
+            return `
+                <article id="card-q-${q.id}" class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200">
+                    ${passageBanner}
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-indigo-900 text-white text-xs font-extrabold px-3 py-1 rounded-full">Q ${indexNum + 1} (ID #${q.id})</span>
+                            <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-full">${subNames[q.subject]}</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="trigger5050(${q.id})" ${(isAnswered || state.lifelines5050 <= 0 || removed.length) ? 'disabled' : ''}
+                                class="px-2.5 py-1 rounded-lg text-[11px] font-extrabold bg-amber-100 text-amber-900 border border-amber-300 disabled:opacity-40 cursor-pointer">
+                                ⚡ 50-50 (${state.lifelines5050})
+                            </button>
+                            <button onclick="triggerHint(${q.id})" ${(isAnswered || state.lifelinesHint <= 0 || showHint) ? 'disabled' : ''}
+                                class="px-2.5 py-1 rounded-lg text-[11px] font-extrabold bg-sky-100 text-sky-900 border border-sky-300 disabled:opacity-40 cursor-pointer">
+                                💡 Hint (${state.lifelinesHint})
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-base sm:text-lg font-bold text-slate-900 mb-3.5">${qTitle}</div>
+                    <div class="space-y-2">${optsHTML}</div>
+                    ${hintHTML}
+                    ${expHTML}
+                </article>
+            `;
+        }
+
+        function renderQuiz() {
+            const listEl = document.getElementById('questions-list');
+            const filtered = getFilteredQuestions();
+            const singleBar = document.getElementById('single-nav-bar');
+
+            if (filtered.length === 0) {
+                singleBar.classList.add('hidden');
+                listEl.innerHTML = `<div class="bg-white rounded-2xl p-8 text-center font-bold text-slate-500 border">इस फ़िल्टर में कोई प्रश्न नहीं है।</div>`;
+                renderPalette(filtered);
+                updateJNVSTScorecard();
+                return;
+            }
+
+            if (state.currentSingleIdx >= filtered.length) state.currentSingleIdx = 0;
+
+            if (state.playMode === 'single') {
+                singleBar.classList.remove('hidden');
+                const q = filtered[state.currentSingleIdx];
+                listEl.innerHTML = renderQuestionCard(q, state.currentSingleIdx);
+                document.getElementById('single-indicator').innerText = `Question ${state.currentSingleIdx + 1} of ${filtered.length}`;
+                document.getElementById('prev-btn').disabled = state.currentSingleIdx === 0;
+                document.getElementById('next-btn').disabled = state.currentSingleIdx === filtered.length - 1;
+            } else {
+                singleBar.classList.add('hidden');
+                listEl.innerHTML = filtered.map((q, idx) => renderQuestionCard(q, idx)).join('');
+            }
+
+            renderPalette(filtered);
+            updateJNVSTScorecard();
+        }
+
+        function renderPalette(filtered) {
+            document.getElementById('palette-total').innerText = `${filtered.length} Qs`;
+            document.getElementById('palette-grid').innerHTML = filtered.map((q, idx) => {
+                const ans = state.userAnswers[q.id];
+                let cls = "bg-slate-100 text-slate-700 border-slate-200";
+                if (ans !== undefined) {
+                    cls = ans === q.ans ? "bg-emerald-500 text-white border-emerald-600" : "bg-rose-500 text-white border-rose-600";
+                }
+                return `<button onclick="jumpToQ(${idx}, ${q.id})" class="h-8 rounded-lg border text-xs font-extrabold ${cls} cursor-pointer">${idx + 1}</button>`;
+            }).join('');
+        }
+
+        function jumpToQ(idx, qId) {
+            if (state.playMode === 'single') {
+                state.currentSingleIdx = idx;
+                renderQuiz();
+            } else {
+                const el = document.getElementById(`card-q-${qId}`);
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        function answerQuestion(qId, chosenOpt) {
+            if (state.userAnswers.hasOwnProperty(qId)) return;
+            const q = QUESTIONS_80.find(item => item.id === qId);
+            if (!q) return;
+            state.userAnswers[qId] = chosenOpt;
+            playTone(chosenOpt === q.ans ? 'correct' : 'wrong');
+            saveState();
+            renderQuiz();
+        }
+
+        function trigger5050(qId) {
+            if (state.lifelines5050 <= 0) return;
+            const q = QUESTIONS_80.find(item => item.id === qId);
+            const wrongs = [0, 1, 2, 3].filter(i => i !== q.ans);
+            shuffleArray(wrongs);
+            state.hiddenOptions[qId] = [wrongs[0], wrongs[1]];
+            state.lifelines5050--;
+            renderQuiz();
+        }
+
+        function triggerHint(qId) {
+            if (state.lifelinesHint <= 0) return;
+            state.shownHints[qId] = true;
+            state.lifelinesHint--;
+            renderQuiz();
+        }
+
+        function shuffleAllQuestionsAndOptions() {
+            shuffleArray(state.questionOrder);
+            QUESTIONS_80.forEach(q => {
+                if (!state.userAnswers.hasOwnProperty(q.id)) {
+                    const opts = [0, 1, 2, 3];
+                    shuffleArray(opts);
+                    state.optionOrders[q.id] = opts;
+                }
+            });
+            state.currentSingleIdx = 0;
+            renderQuiz();
+        }
+
+        function toggleWrongRevision() {
+            state.wrongOnly = !state.wrongOnly;
+            state.currentSingleIdx = 0;
+            renderQuiz();
+        }
+
+        function setPlayMode(mode) {
+            state.playMode = mode;
+            document.getElementById('btn-mode-list').className = mode === 'list'
+                ? "px-3 py-1.5 rounded-lg text-xs font-extrabold bg-indigo-600 text-white cursor-pointer"
+                : "px-3 py-1.5 rounded-lg text-xs font-extrabold bg-slate-100 text-slate-700 cursor-pointer";
+            document.getElementById('btn-mode-single').className = mode === 'single'
+                ? "px-3 py-1.5 rounded-lg text-xs font-extrabold bg-indigo-600 text-white cursor-pointer"
+                : "px-3 py-1.5 rounded-lg text-xs font-extrabold bg-slate-100 text-slate-700 cursor-pointer";
+            renderQuiz();
+        }
+
+        function moveSingle(step) {
+            const filtered = getFilteredQuestions();
+            const next = state.currentSingleIdx + step;
+            if (next >= 0 && next < filtered.length) {
+                state.currentSingleIdx = next;
+                renderQuiz();
+            }
+        }
+
+        function onFilterChange() {
+            state.selectedSubject = document.getElementById('subject-filter').value;
+            state.currentSingleIdx = 0;
+            renderQuiz();
+        }
+
+        function onLangChange() {
+            state.language = document.getElementById('lang-select').value;
+            saveState();
+            renderQuiz();
+        }
+
+        function resetFullQuiz() {
+            state.userAnswers = {};
+            state.hiddenOptions = {};
+            state.shownHints = {};
+            state.lifelines5050 = 3;
+            state.lifelinesHint = 3;
+            state.wrongOnly = false;
+            shuffleAllQuestionsAndOptions();
+        }
+
+        // =========================================================================
+        // 8. 50 हिंदी अनुच्छेद (250 प्रश्न) रेंडरिंग
+        // =========================================================================
+        function initAnuchedUI() {
+            const sel = document.getElementById('anuched-select');
+            sel.innerHTML = ANUCHED_50.map((a, idx) => `<option value="${idx}">अनुच्छेद ${idx + 1}: ${a.title} (5 Qs)</option>`).join('');
+            renderCurrentAnuched();
+        }
+
+        function selectAnuched(idx) {
+            state.currentAnuchedIdx = idx;
+            renderCurrentAnuched();
+        }
+        function prevAnuched() {
+            if (state.currentAnuchedIdx > 0) {
+                state.currentAnuchedIdx--;
+                document.getElementById('anuched-select').value = state.currentAnuchedIdx;
+                renderCurrentAnuched();
+            }
+        }
+        function nextAnuched() {
+            if (state.currentAnuchedIdx < ANUCHED_50.length - 1) {
+                state.currentAnuchedIdx++;
+                document.getElementById('anuched-select').value = state.currentAnuchedIdx;
+                renderCurrentAnuched();
+            }
+        }
+
+        function renderCurrentAnuched() {
+            const a = ANUCHED_50[state.currentAnuchedIdx];
+            const container = document.getElementById('anuched-container');
+            const letters = ['क', 'ख', 'ग', 'घ'];
+
+            const qsHTML = a.qs.map((qItem, qIdx) => {
+                const key = `${a.id}_${qIdx}`;
+                const chosen = state.anuchedAnswers[key];
+                const isDone = chosen !== undefined;
+
+                const opts = qItem.opts.map((optText, oIdx) => {
+                    let cls = "border-slate-200 bg-white";
+                    if (isDone) {
+                        if (oIdx === qItem.ans) cls = "opt-correct";
+                        else if (oIdx === chosen) cls = "opt-wrong";
+                        else cls = "border-slate-100 bg-slate-50 text-slate-400";
+                    }
+                    return `
+                        <button onclick="answerAnuched(${a.id}, ${qIdx}, ${oIdx})" ${isDone ? 'disabled' : ''}
+                            class="option-btn w-full text-left p-3 rounded-xl border-2 ${cls} text-sm font-semibold cursor-pointer">
+                            (${letters[oIdx]}) ${optText}
+                        </button>
+                    `;
+                }).join('');
+
+                return `
+                    <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs">
+                        <div class="font-extrabold text-slate-900 mb-2.5">प्रश्न ${qIdx + 1}: ${qItem.q}</div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">${opts}</div>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = `
+                <div class="bg-amber-50/90 border-2 border-amber-200 rounded-2xl p-5 sm:p-6 mb-4 shadow-sm">
+                    <div class="text-xs font-extrabold uppercase text-amber-800 mb-1">अनुच्छेद ${state.currentAnuchedIdx + 1} / 50</div>
+                    <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 mb-2">${a.title}</h3>
+                    <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">${a.text}</p>
+                </div>
+                <div class="space-y-3">${qsHTML}</div>
+            `;
+            updateAnuchedStats();
+        }
+
+        function answerAnuched(aId, qIdx, oIdx) {
+            const key = `${aId}_${qIdx}`;
+            if (state.anuchedAnswers.hasOwnProperty(key)) return;
+            state.anuchedAnswers[key] = oIdx;
+            const a = ANUCHED_50.find(item => item.id === aId);
+            playTone(a && a.qs[qIdx].ans === oIdx ? 'correct' : 'wrong');
+            renderCurrentAnuched();
+        }
+
+        function updateAnuchedStats() {
+            let cor = 0;
+            ANUCHED_50.forEach(a => {
+                a.qs.forEach((q, idx) => {
+                    if (state.anuchedAnswers[`${a.id}_${idx}`] === q.ans) cor++;
+                });
+            });
+            document.getElementById('anuched-correct-stat').innerText = cor;
+            document.getElementById('anuched-marks-stat').innerText = (cor * 1.25).toFixed(2);
+        }
+
+        // =========================================================================
+        // 9. टैब स्विचर और सर्टिफिकेट रिपोर्ट कार्ड
+        // =========================================================================
+        function switchMainTab(tab) {
+            const mockSec = document.getElementById('section-mock');
+            const anuSec = document.getElementById('section-anuched');
+            const mockBtn = document.getElementById('tab-mock-btn');
+            const anuBtn = document.getElementById('tab-anuched-btn');
+
+            if (tab === 'mock') {
+                mockSec.classList.remove('hidden');
+                anuSec.classList.add('hidden');
+                mockBtn.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold bg-amber-400 text-slate-950 shadow-md cursor-pointer transition";
+                anuBtn.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold bg-white/15 hover:bg-white/25 text-white border border-white/30 cursor-pointer transition";
+            } else {
+                mockSec.classList.add('hidden');
+                anuSec.classList.remove('hidden');
+                anuBtn.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold bg-amber-400 text-slate-950 shadow-md cursor-pointer transition";
+                mockBtn.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold bg-white/15 hover:bg-white/25 text-white border border-white/30 cursor-pointer transition";
+            }
+        }
+
+        function openReportCard() {
+            const name = document.getElementById('student-name').value.trim() || "Navodaya Aspirant";
+            document.getElementById('cert-name').innerText = name;
+            document.getElementById('cert-date').innerText = "Date: " + new Date().toLocaleDateString('hi-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+
+            let att = 0, cor = 0, wrg = 0;
+            const subCor = { mental: 0, evs: 0, maths: 0, hindi: 0 };
+            QUESTIONS_80.forEach(q => {
+                if (state.userAnswers.hasOwnProperty(q.id)) {
+                    att++;
+                    if (state.userAnswers[q.id] === q.ans) { cor++; subCor[q.subject]++; }
+                    else wrg++;
+                }
+            });
+
+            document.getElementById('cert-att').innerText = `${att} / 80`;
+            document.getElementById('cert-cor').innerText = cor;
+            document.getElementById('cert-wrg').innerText = wrg;
+            document.getElementById('cert-scr').innerText = `${(cor * 1.25).toFixed(2)} / 100`;
+
+            const subjects = [
+                { key: 'mental', label: '1. Mental Ability (20 Qs)', color: 'bg-purple-600' },
+                { key: 'evs', label: '2. EVS [15 Qs + 1 गद्यांश 5 Qs] (20 Qs)', color: 'bg-emerald-600' },
+                { key: 'maths', label: '3. Maths / गणित (20 Qs)', color: 'bg-sky-600' },
+                { key: 'hindi', label: '4. Hindi / हिंदी (20 Qs)', color: 'bg-amber-600' }
+            ];
+
+            document.getElementById('cert-subjects').innerHTML = subjects.map(s => {
+                const marks = (subCor[s.key] * 1.25).toFixed(2);
+                const pct = (subCor[s.key] / 20) * 100;
+                return `
+                    <div class="bg-slate-50 p-3 rounded-xl border">
+                        <div class="flex justify-between text-xs font-extrabold mb-1">
+                            <span>${s.label}</span>
+                            <span>${marks} / 25 Marks (${subCor[s.key]}/20)</span>
+                        </div>
+                        <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                            <div class="h-full ${s.color}" style="width: ${pct}%"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            const modal = document.getElementById('report-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeReportCard() {
+            const modal = document.getElementById('report-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        document.getElementById('student-name').addEventListener('input', (e) => {
+            state.studentName = e.target.value.trim();
+            document.getElementById('player-tag').innerText = `👤 ${state.studentName || 'Guest'}`;
+            saveState();
+        });
+
+        window.onload = function () {
+            initFreshShuffledSession();
+            document.getElementById('student-name').value = state.studentName;
+            document.getElementById('player-tag').innerText = `👤 ${state.studentName || 'Guest'}`;
+            document.getElementById('lang-select').value = state.language;
+            document.getElementById('sound-btn').innerText = state.soundOn ? '🔊 Sound ON' : '🔇 Sound OFF';
+            updateTimerDisplay();
+            renderQuiz();
+            initAnuchedUI();
+        };
+    </script>
+</body>
+</html>
